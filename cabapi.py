@@ -25,7 +25,7 @@ def ftp_rerun_4534353543():
     data_folder = "{}-{}-{}".format(data_vec[0][0], data_vec[0][1], data_vec[0][2])
     print(data_vec[0][1])
     send_ftp(data_folder)
-    return "fdffdgdhhffgfhjjjjjjjjjjjjjjjjjjjjjjjjjjjgh"
+    return "fdffdgdhhffgfhjjjjjddddjjjjjjjjjjjjjjjjjjjjjjjgh"
 @app.route('/db-cab-rerun', methods=['GET'])
 def db_cab_rerun():
     data = request.args.get('data')
