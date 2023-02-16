@@ -19,13 +19,13 @@ def init_cab_with_date():
     return menssage
 
 @app.route('/rerun-ftp', methods=['GET'])
-def ftp_rerun_443():
+def ftp_rerun_4534353543():
     data = request.args.get('data')
     data_vec = re.findall(r"(^\d{4})\/(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])$", data)
     data_folder = "{}-{}-{}".format(data_vec[0][0], data_vec[0][1], data_vec[0][2])
     print(data_vec[0][1])
     send_ftp(data_folder)
-    return "fdffdgdhhffgfgh"
+    return "fdffdgdhhffgfhjjjjjjjjjjjjjjjjjjjjjjjjjjjgh"
 @app.route('/db-cab-rerun', methods=['GET'])
 def db_cab_rerun():
     data = request.args.get('data')
