@@ -3,6 +3,7 @@ from urllib.parse import urlparse
 import os
 import time
 from datetime import datetime, date, timedelta
+from intflaskcab import history_cab
 
 
 class Sftp:
@@ -96,7 +97,7 @@ def send_ftp(data_folder):
 
         # Connect to SFTP
         sftp.connect()
-
+        ftp_send_list_ok = []
         # Lists files with attributes of SFTP
         path = "/home/francisco"
         print(f"List of files with attributes at location {path}:")
@@ -121,6 +122,7 @@ def send_ftp(data_folder):
             # remote_path = "/incomming/{}".format(file)
             remote_path = "/home/francisco/{}".format(file)
             sftp.upload(local_path, remote_path)
+            ftp_send_list_ok.append(file)
 
         # Lists files of SFTP location after upload
         print(f"List of files at location {path}:")
@@ -132,9 +134,17 @@ def send_ftp(data_folder):
         # )
 
         # Disconnect from SFTP
+        print(ftp_send_list_ok)
+        ftp_send_list_ok = ', '.join(ftp_send_list_ok)
+
+        # data_format = datetime.strptime(data_folder + " 00:00:00.000", '%Y-%m-%d %H:%M:%S.%f')
+
+        history_cab(2, "ENVIADO COM SUCESSO", data_folder + " 00:00:00.000", vec_ftp=ftp_send_list_ok)
+
         sftp.disconnect()
         return "Cab enviado via FTP com sucesso"
     except Exception as erro:
+        history_cab(2, "FALHA NO ENVIO", data_folder,vec_ftp=ftp_send_list_ok)
         return "Ocorreu um erro ao enviar o arquivo CAB  :" + str(erro)
 
 
